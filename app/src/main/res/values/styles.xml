@@ -1,10 +1,11 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#606AAF</item>
+        <item name="colorPrimaryDark">#609FAF</item>
+        <item name="colorAccent">#F9F7F4</item>
+        <item name="android:windowBackground">#C0A382</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 </resources>

@@ -1,17 +1,12 @@
 package com.stratos.syrostownhall;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+@SuppressWarnings("deprecation")
 public class MainActivity extends AppCompatActivity {
 
     ProgressBar progressBar;
@@ -22,7 +17,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        /**
+         * Defined by the theme of the app, otherwise needed for fullscreen
+         */
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         progressBar =findViewById(R.id.progress_bar);
         textView =findViewById(R.id.text_view);
