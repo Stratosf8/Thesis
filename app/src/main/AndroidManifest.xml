@@ -16,7 +16,33 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PoiPaintingArCamera" android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".PoiHeadStatue"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".PoiWall"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".PoiOutside"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".PoiStairs"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".PoiBackStairs"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".PoiCourt"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".PoiStatue"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Home2Activity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".PoiPaintingArCamera"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".PoiPainting"
             android:screenOrientation="landscape" />

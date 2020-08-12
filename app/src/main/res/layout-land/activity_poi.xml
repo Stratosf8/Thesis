@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -43,6 +44,19 @@
                 android:layout_marginTop="10dp"
                 android:textColor="#F9F7F4"
                 android:text="Long Description"/>
+
+            <ImageView
+                android:id="@+id/imageZiller"
+                android:layout_width="135dp"
+                android:layout_height="300dp"
+                android:layout_above="@+id/txtDescription"
+                android:layout_marginBottom="16dp"
+                android:alpha="0.9"
+                android:src="@mipmap/ziller"
+                android:visibility="visible"
+                app:srcCompat="@mipmap/ziller"
+                tools:srcCompat="@mipmap/ziller"
+                tools:visibility="visible" />
 
 
         </RelativeLayout>

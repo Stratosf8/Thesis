@@ -20,6 +20,7 @@ import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 
 import java.util.Collection;
+import java.util.Objects;
 
 public class PoiPaintingArCamera extends AppCompatActivity {
 
@@ -54,10 +55,12 @@ public class PoiPaintingArCamera extends AppCompatActivity {
                     renderable = modelRenderable;
                 });
 
-        arFragment = (com.stratos.syrostownhall.CustomArFragment)
-                getSupportFragmentManager().findFragmentById(R.id.arFragment);
 
-        scene = arFragment.getArSceneView().getScene();
+        arFragment = (com.stratos.syrostownhall.CustomArFragment)getSupportFragmentManager().findFragmentById(R.id.arFragment);
+
+        if (arFragment != null) {
+            scene = arFragment.getArSceneView().getScene();
+        }
 
         scene.addOnUpdateListener(this::onUpdate);
 
@@ -71,25 +74,23 @@ public class PoiPaintingArCamera extends AppCompatActivity {
         Frame frame = arFragment.getArSceneView().getArFrame();
 
         Collection<AugmentedImage> augmentedImages =
-                frame.getUpdatedTrackables(AugmentedImage.class);
+                frame != null ? frame.getUpdatedTrackables(AugmentedImage.class) : null;
 
 
-        for (AugmentedImage painting : augmentedImages) {
-
+        for (AugmentedImage painting : Objects.requireNonNull(augmentedImages)) {
             if (painting.getTrackingState() == TrackingState.TRACKING) {
 
                 if (painting.getName().equals("painting")) {
 
                     isImageDetected = true;
 
-                    playVideo (painting.createAnchor(painting.getCenterPose()), painting.getExtentX(),
+                    playVideo(painting.createAnchor(painting.getCenterPose()), painting.getExtentX(),
                             painting.getExtentZ());
 
                     break;
                 }
 
             }
-
         }
 
     }

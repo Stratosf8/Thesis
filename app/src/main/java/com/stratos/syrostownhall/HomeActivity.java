@@ -29,20 +29,44 @@ public class HomeActivity extends AppCompatActivity {
         initViews();
         Utils.initPois();
 
-        btnListButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, AllPoiActivity.class);
-                startActivity(intent);
-            }
+        btnListButton.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, AllPoiActivity.class);
+            startActivity(intent);
         });
 
-        btnPainting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, PoiPainting.class);
-                startActivity(intent);
-            }
+        btnPainting.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, PoiPainting.class);
+            startActivity(intent);
+        });
+
+        btnStatue.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, PoiStatue.class);
+            startActivity(intent);
+        });
+
+        btnCourt.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, PoiCourt.class);
+            startActivity(intent);
+        });
+
+        btnStairs.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, PoiStairs.class);
+            startActivity(intent);
+        });
+
+        btnOutside.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, PoiOutside.class);
+            startActivity(intent);
+        });
+
+        btnBackStairs.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, PoiBackStairs.class);
+            startActivity(intent);
+        });
+
+        btnButtonNext.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, Home2Activity.class);
+            startActivity(intent);
         });
     }
 
@@ -52,25 +76,12 @@ public class HomeActivity extends AppCompatActivity {
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
         builder.setMessage("Are You Sure You Want to Exit ?")
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        finishAffinity();
-                        System.exit(0);
-                    }
+                .setPositiveButton("Yes", (dialogInterface, i) -> {
+                    finishAffinity();
+                    System.exit(0);
                 })
-                .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
+                .setNeutralButton("Cancel", (dialogInterface, i) -> dialogInterface.cancel())
+                .setNegativeButton("No", (dialogInterface, i) -> dialogInterface.cancel());
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }

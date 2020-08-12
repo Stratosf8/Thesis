@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-@SuppressWarnings("deprecation")
 public class MainActivity extends AppCompatActivity {
 
     ProgressBar progressBar;
@@ -30,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
         progressAnimation();
 
+
     }
+
     public void progressAnimation(){
         ProgressAnimation anim = new ProgressAnimation(this, progressBar, textView, 0f, 100f);
         anim.setDuration(6000);
