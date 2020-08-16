@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Poi"
-    android:background="#C0A382">
+    android:contentDescription="ernesto ziller"
+    tools:context=".Poi">
 
 
     <androidx.core.widget.NestedScrollView
@@ -25,7 +25,7 @@
                 android:text="Poi Name"
                 android:textColor="#F9F7F4"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/poiImage"
@@ -41,22 +41,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/poiImage"
-                android:layout_marginTop="10dp"
-                android:textColor="#F9F7F4"
-                android:text="Long Description"/>
+                android:layout_marginTop="-46dp"
+                android:background="@drawable/back"
+                android:text="Long Description"
+                android:textColor="#1F1F1E" />
 
             <ImageView
                 android:id="@+id/imageZiller"
                 android:layout_width="135dp"
                 android:layout_height="300dp"
-                android:layout_above="@+id/txtDescription"
-                android:layout_marginBottom="16dp"
                 android:alpha="0.9"
+                android:contentDescription="ernesto ziller"
                 android:src="@mipmap/ziller"
                 android:visibility="visible"
                 app:srcCompat="@mipmap/ziller"
                 tools:srcCompat="@mipmap/ziller"
                 tools:visibility="visible" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingAudioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="3dp"
+                android:backgroundTint="#E2D5C6"
+                android:clickable="true"
+                android:src="@drawable/ic_audio" />
 
 
         </RelativeLayout>

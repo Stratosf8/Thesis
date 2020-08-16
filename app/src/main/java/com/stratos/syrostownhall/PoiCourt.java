@@ -21,7 +21,7 @@ public class PoiCourt extends AppCompatActivity {
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PoiCourt.this, PoiPaintingArCamera.class); //TODO: Replace destination class with Statue AR
+                Intent intent = new Intent(PoiCourt.this, PoiCourtArCamera.class);
                 startActivity(intent);
             }
         });

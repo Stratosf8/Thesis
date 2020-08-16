@@ -43,6 +43,10 @@ public class Home2Activity extends AppCompatActivity {
             Intent intent = new Intent(Home2Activity.this, PoiWall.class);
             startActivity(intent);
         });
+        btnStatue.setOnClickListener(view -> {
+            Intent intent = new Intent(Home2Activity.this, PoiHeadStatue.class);
+            startActivity(intent);
+        });
     }
 
     private void initViews() {

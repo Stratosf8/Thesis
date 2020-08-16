@@ -3,9 +3,9 @@ package com.stratos.syrostownhall;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.google.ar.core.Anchor;
 import com.google.ar.core.AugmentedImage;
@@ -15,49 +15,45 @@ import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.FrameTime;
 import com.google.ar.sceneform.Scene;
 import com.google.ar.sceneform.math.Vector3;
-import com.google.ar.sceneform.rendering.Color;
 import com.google.ar.sceneform.rendering.ExternalTexture;
-import com.google.ar.sceneform.rendering.ModelRenderable;
+import com.google.ar.sceneform.rendering.ViewRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 
 import java.util.Collection;
 import java.util.Objects;
 
-public class PoiPaintingArCamera extends AppCompatActivity {
+public class PoiStatueArCamera extends AppCompatActivity {
 
     private ExternalTexture texture;
-    private MediaPlayer mediaPlayer;
+    private ImageView imageView;
     private ArFragment arFragment;
     private Scene scene;
-    private ModelRenderable renderable;
+    private ViewRenderable renderable;
     private boolean isImageDetected = false;
+
+    public PoiStatueArCamera(ExternalTexture texture, ImageView imageView) {
+        this.texture = texture;
+        this.imageView = imageView;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_poi_painting_ar_camera);
+        setContentView(R.layout.activity_poi_statue_ar_camera);
 
-        texture = new ExternalTexture();
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.video);
-        mediaPlayer.setSurface(texture.getSurface());
-        mediaPlayer.setLooping(true);
 
-        ModelRenderable
+        ViewRenderable
                 .builder()
-                .setSource(this, Uri.parse("video_screen.sfb"))
+                .setSource(this, Uri.parse("statue.jpg"))
                 .build()
-                .thenAccept(modelRenderable -> {
-                    modelRenderable.getMaterial().setExternalTexture("videoTexture",
-                            texture);
-                    modelRenderable.getMaterial().setFloat4("keyColor",
-                            new Color(0.01843f, 1f, 0.098f));
+                .thenAccept(ViewRenderable -> {
+                    ImageView imageView = (ImageView)renderable.getView();
 
-                    renderable = modelRenderable;
+                    renderable = ViewRenderable;
                 });
 
-
-        arFragment = (com.stratos.syrostownhall.CustomArFragment)getSupportFragmentManager().findFragmentById(R.id.arFragment);
+        arFragment = (com.stratos.syrostownhall.CustomArFragment2)getSupportFragmentManager().findFragmentById(R.id.arFragment);
 
         if (arFragment != null) {
             scene = arFragment.getArSceneView().getScene();
@@ -78,15 +74,15 @@ public class PoiPaintingArCamera extends AppCompatActivity {
                 frame != null ? frame.getUpdatedTrackables(AugmentedImage.class) : null;
 
 
-        for (AugmentedImage painting : Objects.requireNonNull(augmentedImages)) {
-            if (painting.getTrackingState() == TrackingState.TRACKING) {
+        for (AugmentedImage statue : Objects.requireNonNull(augmentedImages)) {
+            if (statue.getTrackingState() == TrackingState.TRACKING) {
 
-                if (painting.getName().equals("painting")) {
+                if (statue.getName().equals("statue")) {
 
                     isImageDetected = true;
 
-                    playVideo(painting.createAnchor(painting.getCenterPose()), painting.getExtentX(),
-                            painting.getExtentZ());
+                    createDisplayContext(statue.createAnchor(statue.getCenterPose()), statue.getExtentX(),
+                            statue.getExtentZ());
 
                     break;
                 }
@@ -96,16 +92,13 @@ public class PoiPaintingArCamera extends AppCompatActivity {
 
     }
 
-    private void playVideo(Anchor anchor, float extentX, float extentZ) {
-
-        mediaPlayer.start();
-
+    private void createDisplayContext(Anchor anchor, float extentX, float extentZ) {
         AnchorNode anchorNode = new AnchorNode(anchor);
 
         texture.getSurfaceTexture().setOnFrameAvailableListener(surfaceTexture -> {
             anchorNode.setRenderable(renderable);
             texture.getSurfaceTexture().setOnFrameAvailableListener(null);
-        });
+    });
 
         anchorNode.setWorldScale(new Vector3(extentX, 1f, extentZ));
 
@@ -115,9 +108,9 @@ public class PoiPaintingArCamera extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        mediaPlayer.pause();
         Intent intent = new Intent(this, HomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+
     }
 }

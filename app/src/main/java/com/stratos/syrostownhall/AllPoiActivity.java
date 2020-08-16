@@ -18,6 +18,7 @@ public class AllPoiActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_all_poi);
 
+
             RecyclerView recyclerView = findViewById(R.id.recyclerView);
             PoiAdapter adapter = new PoiAdapter(this);
             recyclerView.setAdapter(adapter);
